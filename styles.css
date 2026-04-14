@@ -1,0 +1,266 @@
+:root {
+    --dial-material-big: url('export/dial_big/black.png');
+    --dial-material-small: url('export/dial_small/black.png');
+    --dial-scale-small: 93%;
+    --dial-scale-big: 93%;
+    --cap-material-img: none;
+    --cap-material-size: 20%;
+    --cap-texture-offset-x: 0px;
+    --cap-texture-offset-y: 0px;
+    --embossing-color: #d0d0d0;
+    --needle-color: #ff0000;
+    --cap-color: #ffffff;
+    --silkscreen-color: #ffffff;
+    --gauge-base-color: #3a3a3a;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #707070;
+    color: #eee;
+}
+
+.preview {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, #8a8a8a 0%, #5e5e5e 100%);
+    padding: 60px;
+    overflow: auto;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.controls {
+    width: 300px;
+    padding: 20px;
+    background: #222;
+    border-right: 1px solid #333;
+    overflow-y: auto;
+}
+
+.controls section {
+    margin-bottom: 25px;
+}
+
+.controls-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.controls-header h2 {
+    margin: 0;
+}
+
+.controls-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+}
+
+.controls-actions button {
+    flex: 1 1 120px;
+}
+
+button {
+    background: #444;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+button:hover {
+    background: #555;
+}
+
+select,
+input[type="color"] {
+    width: 100%;
+    background: #333;
+    color: #fff;
+    border: 1px solid #444;
+    padding: 5px;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+.gauge-cluster {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 60px;
+    background: rgba(58, 58, 58, 0.72);
+    border-radius: 50px;
+    box-shadow: 0 0 60px rgba(40, 40, 40, 0.85);
+}
+
+.gauge-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.gauge {
+    position: relative;
+    width: var(--gauge-width, 210px);
+    height: var(--gauge-height, 210px);
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: var(--gauge-base-color);
+    isolation: isolate;
+}
+
+.gauge.small .layer-material {
+    background-image: var(--dial-material-small);
+    background-size: var(--dial-scale-small) var(--dial-scale-small);
+}
+
+.gauge.big .layer-material {
+    background-image: var(--dial-material-big);
+    background-size: var(--dial-scale-big) var(--dial-scale-big);
+}
+
+.gauge-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.layer-svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.layer-material {
+    z-index: 1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.layer-decoration {
+    z-index: 2;
+    pointer-events: none;
+}
+
+.layer-embossing-color {
+    z-index: 3;
+    background-color: transparent;
+}
+
+.layer-embossing-material {
+    z-index: 3;
+    background-image: none;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    opacity: 0;
+}
+
+.has-embossing-material .layer-embossing-color {
+    display: none;
+}
+
+.has-embossing-material .layer-embossing-material {
+    opacity: 1;
+}
+
+.layer-silkscreen {
+    z-index: 4;
+}
+
+.layer-silkscreen path,
+.layer-silkscreen text {
+    fill: var(--silkscreen-color) !important;
+}
+
+.layer-needle {
+    z-index: 10;
+}
+
+.layer-needle path,
+.layer-needle polygon,
+.layer-needle circle,
+.layer-needle ellipse,
+.layer-needle rect {
+    fill: var(--needle-color) !important;
+}
+
+.layer-needle line,
+.layer-needle polyline {
+    stroke: var(--needle-color) !important;
+}
+
+.layer-needle svg {
+    transform-origin: center;
+}
+
+.pivot-offset-right .layer-needle svg {
+    transform-origin: 86.3% 50.2%;
+}
+
+.pivot-offset-left .layer-needle svg {
+    transform-origin: 13.7% 50.2%;
+}
+
+.layer-cap-masked {
+    z-index: 12;
+    background-color: var(--cap-color);
+    background-image: var(--cap-material-img);
+    background-size: 100% 100%;
+    background-position: center center;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    transform-origin: center;
+}
+
+.pivot-offset-right .layer-cap-masked {
+    transform-origin: 86.3% 50.2%;
+}
+
+.pivot-offset-left .layer-cap-masked {
+    transform-origin: 13.7% 50.2%;
+}
+
+.has-cap-material .layer-cap-masked {
+    background-color: transparent;
+    background-size: var(--cap-material-size-local, var(--cap-material-size)) var(--cap-material-size-local, var(--cap-material-size));
+    background-position: calc(50% + var(--cap-texture-offset-x-local, var(--cap-texture-offset-x))) calc(50% + var(--cap-texture-offset-y-local, var(--cap-texture-offset-y)));
+    background-repeat: no-repeat;
+    image-rendering: auto;
+}
+
+.needle-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+    transition: transform 0.5s ease;
+}
