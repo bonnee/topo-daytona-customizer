@@ -264,3 +264,106 @@ input[type="color"] {
     transform-origin: center;
     transition: transform 0.5s ease;
 }
+
+@media (max-width: 1024px) {
+    .app-container {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+    }
+
+    .controls {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #333;
+        max-height: none;
+        overflow: visible;
+        box-sizing: border-box;
+    }
+
+    .preview {
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 28px 18px 36px;
+        overflow-x: auto;
+        overflow-y: visible;
+    }
+
+    .gauge-cluster {
+        min-width: max-content;
+        gap: 24px;
+        padding: 34px;
+        border-radius: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    .controls {
+        padding: 16px;
+    }
+
+    .controls-header {
+        gap: 12px;
+    }
+
+    .controls-actions {
+        gap: 10px;
+    }
+
+    .controls-actions button {
+        flex: 1 1 100%;
+    }
+
+    button,
+    select,
+    input[type="color"] {
+        min-height: 44px;
+        font-size: 16px;
+    }
+
+    .controls section {
+        margin-bottom: 20px;
+    }
+
+    .controls h3 {
+        margin: 0 0 8px;
+        font-size: 1rem;
+    }
+
+    .preview {
+        padding: 18px 10px 24px;
+    }
+
+    .gauge-cluster {
+        gap: 16px;
+        padding: 22px;
+        border-radius: 24px;
+        box-shadow: 0 0 36px rgba(40, 40, 40, 0.7);
+    }
+
+    .gauge-column {
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .controls {
+        padding: 14px;
+    }
+
+    .controls-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .gauge-cluster {
+        padding: 16px;
+        gap: 12px;
+        border-radius: 18px;
+    }
+
+    .gauge-column {
+        gap: 12px;
+    }
+}
